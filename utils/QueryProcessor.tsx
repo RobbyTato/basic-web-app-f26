@@ -71,7 +71,7 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("what is")) {
     let result: string = query.toLowerCase().replace(/plus/, "+");
     result = result.replace(/minus/, "-");
-    result = result.replace(/multiplied by/, "-");
+    result = result.replace(/multiplied by/, "*");
     let total: number = eval(result.replace(/^What is /i, '').replace(/\?$/, '').trim(););
     return total.toString();
   }
