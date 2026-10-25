@@ -20,15 +20,15 @@ export default function QueryProcessor(query: string): string {
     return "ebilj";
   }
 
-  if (query.toLowerCase().includes(" plus ")) {
-    const matches: RegExpMatchArray | null = query.match(/\d+/g);
+  // if (query.toLowerCase().includes(" plus ")) {
+  //   const matches: RegExpMatchArray | null = query.match(/\d+/g);
 
-    if (matches) {
-      const numbersArray: number[] = matches.map(Number);
-      const total = numbersArray.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0);
-      return total.toString();
-    }
-  }
+  //   if (matches) {
+  //     const numbersArray: number[] = matches.map(Number);
+  //     const total = numbersArray.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0);
+  //     return total.toString();
+  //   }
+  // }
 
   if (query.toLowerCase().includes("largest")) {
     const matches: RegExpMatchArray | null = query.match(/\d+/g);
@@ -48,13 +48,32 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
-  if (query.toLowerCase().includes("minus")) {
-    const matches: RegExpMatchArray | null = query.match(/\d+/g);
+  // if (query.toLowerCase().includes("minus")) {
+  //   const matches: RegExpMatchArray | null = query.match(/\d+/g);
 
-    if (matches) {
-      const numbersArray: number[] = matches.map(Number);
-      return (numbersArray[0] - numbersArray[1]).toString();
-    }
+  //   if (matches) {
+  //     const numbersArray: number[] = matches.map(Number);
+  //     return (numbersArray[0] - numbersArray[1]).toString();
+  //   }
+  // }
+
+  // if (query.toLowerCase().includes("multiplied")) {
+  //   if (query.toLowerCase().includes("plus")) {
+  //     const matches: RegExpMatchArray | null = query.match(/\d+/g);
+
+  //     if (matches) {
+  //       const numbersArray: number[] = matches.map(Number);
+  //       return (numbersArray[0] - numbersArray[1]).toString();
+  //     }
+  //   }
+  // }
+
+  if (query.toLowerCase().includes("what is")) {
+    let result: string = query.toLowerCase().replace(/plus/, "+");
+    result = result.replace(/minus/, "-");
+    result = result.replace(/multiplied by/, "-");
+    let total: number = eval(result.replace(/^What is /i, '').replace(/\?$/, '').trim(););
+    return total.toString();
   }
 
   return "";
