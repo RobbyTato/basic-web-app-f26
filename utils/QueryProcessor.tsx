@@ -20,5 +20,15 @@ export default function QueryProcessor(query: string): string {
     return "ebilj";
   }
 
+  if (query.toLowerCase().includes(" plus ")) {
+    const matches: RegExpMatchArray | null = query.match(/\d+/g);
+
+    if (matches) {
+      const numbersArray: number[] = matches.map(Number);
+      const total = numbersArray.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0);
+      return total.toString();
+    }
+  }
+
   return "";
 }
