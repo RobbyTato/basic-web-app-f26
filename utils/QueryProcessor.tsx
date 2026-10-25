@@ -39,5 +39,23 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("power")) {
+    const matches: RegExpMatchArray | null = query.match(/\d+/g);
+
+    if (matches) {
+      const numbersArray: number[] = matches.map(Number);
+      return Math.pow(numbersArray[0], numbersArray[1]).toString();
+    }
+  }
+
+  if (query.toLowerCase().includes("minus")) {
+    const matches: RegExpMatchArray | null = query.match(/\d+/g);
+
+    if (matches) {
+      const numbersArray: number[] = matches.map(Number);
+      return (numbersArray[0] - numbersArray[1]).toString();
+    }
+  }
+
   return "";
 }
