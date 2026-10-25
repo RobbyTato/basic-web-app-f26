@@ -30,5 +30,14 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("largest")) {
+    const matches: RegExpMatchArray | null = query.match(/\d+/g);
+
+    if (matches) {
+      const numbersArray: number[] = matches.map(Number);
+      return Math.max(...numbersArray).toString();
+    }
+  }
+
   return "";
 }
